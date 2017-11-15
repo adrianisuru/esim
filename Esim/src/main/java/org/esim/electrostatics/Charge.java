@@ -2,6 +2,13 @@ package org.esim.electrostatics;
 
 import org.joml.Vector2f;
 
+/**
+ * Class representing an electric charge defined by 
+ * xy position (in meters) and charge (in coulombs).
+ * <b>boi boi boi
+ * @author adrianisuru
+ *
+ */
 public class Charge {
 
 	/**The x position of this charge.*/
@@ -33,6 +40,14 @@ public class Charge {
 	 */
 	public Charge(float x, float y) {
 		this(x, y, 1);
+	}
+	
+	/**
+	 * Copy constructor for charge.
+	 * @param charge the charge to copy
+	 */
+	public Charge(Charge charge) {
+		this(charge.x, charge.y, charge.value);
 	}
 	
 	/**
