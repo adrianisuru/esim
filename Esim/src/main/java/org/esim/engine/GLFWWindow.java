@@ -25,6 +25,7 @@ public class GLFWWindow {
 	/**
 	 * Creates a new window using GLFW.glfwCreateWindow().
 	 * @see org.lwjgl.glfw.GLFW#glfwCreateWindow(int, int, java.lang.CharSequence, long, long)
+	 * 
 	 */
 	public GLFWWindow(int width,
             int height,
@@ -33,7 +34,7 @@ public class GLFWWindow {
             long share) {
 		//For now //TODO make this better
 		handle = GLFW.glfwCreateWindow(width, height, title, monitor, share);
-		
+		GLFW.glfwMakeContextCurrent(handle);
 		capabilities = GL.createCapabilities();
 		
 	}
@@ -42,10 +43,16 @@ public class GLFWWindow {
 	 * Prepares this window for drawing.
 	 * Call this method before drawing on this window.
 	 */
-	public void focus() {
-		GL.setCapabilities(capabilities);
+	protected void focus() {
 		GLFW.glfwMakeContextCurrent(handle);
+		GL.setCapabilities(capabilities);
+		
 	}
 	
-	
+	/**
+	 * Swaps the buffers of this window.
+	 */
+	protected final void swapBuffers() {
+		GLFW.glfwSwapBuffers(handle);
+	}
 }

@@ -2,20 +2,36 @@ package org.esim.engine;
 
 public class LoopTimer { //TODO document this
 
-	private double lastTime;
+	/**
+	 * Value of System.nanoTime() when last loop occurred.
+	 */
+	private long lastTime;
 	
-	private final double startTime;
+	/**
+	 * Value of System.nanoTime() at the creation of this timer.
+	 */
+	private final long startTime;
 	
+	/**
+	 * Amount of loops since the creation of this timer
+	 */
 	private long loops;
 	
+	/**
+	 * Creates a new loop timer.
+	 */
 	public LoopTimer() {
 		startTime = System.nanoTime();
 		lastTime = startTime;
 		loops = 0;
 	}
 	
-	public float getTime() {
-		return (float) (System.nanoTime() - lastTime);
+	/**
+	 * Gets the time since the last loop in ms.
+	 * @return the time since last loop.
+	 */
+	public long getTime() {
+		return (System.nanoTime() - lastTime);
 	}
 	
 	public void loopTime() {
@@ -24,19 +40,19 @@ public class LoopTimer { //TODO document this
 	}
 	
 	public float getLoopTime() {
-		double time = System.nanoTime();
-		float loopTime = getTime();
+		long time = System.nanoTime();
+		long loopTime = getTime();
 		lastTime = time;
 		loops++;
 		return loopTime;
 	}
 	
-	public float getStartTime() {
-		return (float) startTime;
+	public long getStartTime() {
+		return startTime;
 	}
 	
-	public float getLifeTime() {
-		return (float) (System.nanoTime() - startTime);
+	public long getLifeTime() {
+		return (System.nanoTime() - startTime);
 	}
 	
 	public long getLifeLoops() {
