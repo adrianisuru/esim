@@ -13,6 +13,12 @@ import org.joml.Vector2f;
  */
 public class Field {
 
+	/**Coulomb's Constant*/
+	public static final float K = (float) (9*Math.pow(10, 9));
+	
+	/**Epsilon Naught, The permitivity of free space*/
+	public static final float E0 = (float) (Math.pow(10, -9)/(36*Math.PI));
+	
 	/**
 	 * List of charges in this field. 
 	 * <b>May contain charges outside the bounds of this field</b>
@@ -39,8 +45,6 @@ public class Field {
 		this.width = width;
 		this.height = height;
 		this.charges = new ArrayList<Charge>(Arrays.asList(charges));
-		
-		
 	}
 	
 	/**
@@ -57,14 +61,83 @@ public class Field {
 	public Field() {
 		this(1, 1);
 	}
+
 	
-	
-	
-	public static Vector2f eField() {
-		return null;
+	/**
+	 * Gets the width.
+	 * @return the width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * Sets the width.
+	 * @param width the width to set
+	 */
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	/**
+	 * Gets the height.
+	 * @return the height
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+	/**
+	 * Sets the height.
+	 * @param height the height to set
+	 */
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	/**
+	 * Gives the electric field vector at the given position.
+	 * @param pos the position to calculate the electric field
+	 * @return the electric field vector
+	 */
+	public Vector2f eField(Vector2f pos) {
+		Vector2f sum = new Vector2f(0);
+		Vector2f temp = new Vector2f(0);
+		
+		float len = 0;
+		for(Charge c : charges) {
+			//Calculate vector from charge position to (x,y)
+			temp.set(c.x, c.y);
+			temp.mul(-1);
+			temp.add(pos);
+			
+			len = temp.length(); // get distance to charge
+			
+			//sum up electric field vectors from each charge
+			sum.add(temp.mul(K*c.value/(len*len*len)));
+			
+		}
+		
+		return sum;
 	}
 	
-	public static float ePotential() {
-		return 0.0f;
+	/**
+	 * Calculates the electric potential at a point.
+	 * @param pos position to calculate the potential at
+	 * @return the electric potential
+	 */
+	public float ePotential(Vector2f pos) {
+		float sum = 0;
+		Vector2f temp = new Vector2f(pos);
+		
+		for(Charge c : charges){
+			temp.set(c.x, c.y);
+			temp.mul(-1);
+			temp.add(pos);
+			
+			sum += K*c.value/temp.length();
+		}
+		
+		return sum;
 	}
 }

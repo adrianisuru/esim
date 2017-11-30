@@ -65,6 +65,7 @@ public class Charge {
 	public float getY() {
 		return y;
 	}
+	
 	/**
 	 * The value of this charge in coulombs.
 	 * @return the value
@@ -73,6 +74,21 @@ public class Charge {
 		return value;
 	}
 
+	/**
+	 * Give distance between this charge and pos
+	 * @param pos position to calculate the distance to
+	 * @return the distance from this to pos
+	 */
+	public float getDistance(Vector2f pos) {
+		Vector2f temp = new Vector2f(0);
+		//Calculate vector from charge position to (x,y)
+		temp.set(x, y);
+		temp.mul(-1);
+		temp.add(pos);
+		
+		return temp.length(); // get distance to charge
+	}
+	
 	/** 
 	 * Generates a hash code using the x, y, and value fields.
 	 * @see java.lang.Object#hashCode()
