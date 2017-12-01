@@ -36,6 +36,12 @@ public class Field {
 	private int height;
 	
 	/**
+	 * Index of the current charge.
+	 * (Used for removal and editing of charges).
+	 */
+	private int currentChargeIndex;
+	
+	/**
 	 * Creates a new field object given dimensions and initial charges.
 	 * @param width the width of this field
 	 * @param height the height of this field
@@ -95,6 +101,49 @@ public class Field {
 		this.height = height;
 	}
 
+	/**
+	 * Adds charges to this field.
+	 * @param charges the charges to add.
+	 */
+	public void addCharges(Charge...charges) {
+		for(Charge c : charges) {
+			this.charges.add(c);
+		}
+		currentChargeIndex = this.charges.size() - 1;
+	}
+	
+	/**
+	 * Removes the charge at the index.
+	 * @param index the index to remove the charge from
+	 */
+	public void removeChargeAt(int index) {
+		charges.remove(index);
+	}
+	
+	/**
+	 * Removes the current charge.
+	 */
+	public void removeCurrentCharge() {
+		removeChargeAt(currentChargeIndex);
+	}
+	
+	/**
+	 * Gets the charge at the index.
+	 * @param index index of the charge
+	 * @return the charge
+	 */
+	public Charge getChargeAt(int index) {
+		return charges.get(index);
+	}
+	
+	/**
+	 * Gets the current charge.
+	 * @return the current charge.
+	 */
+	public Charge getCurrentCharge() {
+		return charges.get(currentChargeIndex);
+	}
+	
 	/**
 	 * Gives the electric field vector at the given position.
 	 * @param pos the position to calculate the electric field

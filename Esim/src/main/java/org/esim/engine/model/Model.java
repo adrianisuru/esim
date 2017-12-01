@@ -7,20 +7,26 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public abstract class Model {
+/**
+ * Abstract class for making models
+ * 
+ * @author adrianisuru
+ *
+ */
+public interface Model {
 
-	protected final int vao_id;
-	
-	protected int indicesCount;
+	/**
+	 * Draws this model.
+	 */
+	public void draw();
 
-	protected Model() {
-		vao_id = GL15.glGenBuffers();
+	/**
+	 * Updates this model.
+	 */
+	public void update();
 
-	}
-
-	public abstract void draw();
-
-	public abstract void update();
-	
-	
+	/**
+	 * Does any cleanup associated with this model.
+	 */
+	public void cleanup();
 }
