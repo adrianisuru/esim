@@ -3,7 +3,9 @@ package org.esim.main;
 import org.esim.electrostatics.Field;
 import org.esim.engine.DisplayWindow;
 import org.esim.engine.GLFWWindow;
+import org.esim.engine.model.Grid;
 import org.esim.engine.model.Model;
+import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
@@ -26,13 +28,15 @@ public class DispField extends DisplayWindow{
 		super(window);
 		this.field = field;
 		
-
+		grid = new Grid(10, 10, new Vector4f(1,1,1,1));
+		
+		
 	}
 
 	@Override
 	public void draw() {
 		
-//	grid.draw();
+ 	grid.draw();
 //	charges.draw();
 //	fieldArrows.draw();
 		
