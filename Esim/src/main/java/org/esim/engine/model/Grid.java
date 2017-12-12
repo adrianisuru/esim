@@ -70,7 +70,7 @@ public class Grid implements Model{
 	
 	@Override
 	public void update() {
-		vertices = new float[(width+height)*4];
+		vertices = new float[(width+height+2)*4];
 		
 		float w = width/2.0f;
 		float h = height/2.0f;
@@ -88,6 +88,14 @@ public class Grid implements Model{
 			vertices[k++]= 1;
 			vertices[k++]= y/h;
 		}
+		vertices[k++] = -1;
+		vertices[k++]= 1;
+		vertices[k++]= 1;
+		vertices[k++]= 1;
+		vertices[k++] = 1;
+		vertices[k++]= -1;
+		vertices[k++]= 1;
+		vertices[k++]= 1;
 		
 		GL30.glBindVertexArray(vaoid);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboid);

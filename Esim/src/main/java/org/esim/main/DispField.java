@@ -15,6 +15,7 @@ import org.esim.engine.DisplayWindow;
 import org.esim.engine.GLFWWindow;
 import org.esim.engine.model.ChargeModel;
 import org.esim.engine.model.Grid;
+import org.esim.engine.model.ImmidiateModeArrowModel;
 import org.esim.engine.model.ImmidiateModeChargeModel;
 import org.esim.engine.model.Model;
 import org.joml.Vector2f;
@@ -40,19 +41,28 @@ public class DispField extends DisplayWindow{
 	
 	private Model charges;
 	
+	private int width, height;
 
-	public DispField(Field field, GLFWWindow window) {
+	public DispField(Field field, GLFWWindow window, int width, int height) {
 		super(window);
 		this.field = field;
+		this.width = width;
+		this.height = height;
 		
-		grid = new Grid(10, 10, new Vector4f(1,1,1,1));
+		grid = new Grid(width, height, new Vector4f(1,1,1,1));
 		charges = new ImmidiateModeChargeModel(this.field);
-		
+		fieldArrows = new ImmidiateModeArrowModel(this.field, width, height, new Vector4f(1,1,1,1));
 
 	}
+	
+
 
 	private void foc() {
 		this.window.focus();
+	}
+	
+	private long getHandle() {
+		return this.window.handle;
 	}
 	
 	@Override
@@ -60,7 +70,7 @@ public class DispField extends DisplayWindow{
 		
  	grid.draw();
 	charges.draw();
-//	fieldArrows.draw();
+	fieldArrows.draw();
 		
 		
 	}

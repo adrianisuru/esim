@@ -5,25 +5,10 @@ package org.esim.engine.model;
  * @author adrianisuru
  *
  */
-public class BasicModel extends Model {
+public abstract class BasicModel implements Model {
 
 	
 	
-	
-	public BasicModel() {
-		
-	}
-	
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
