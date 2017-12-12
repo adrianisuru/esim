@@ -145,6 +145,22 @@ public class Field {
 	}
 	
 	/**
+	 * Gets all charges in an array.
+	 * @return charges in an array
+	 */
+	public Charge[] getCharges() {
+		return charges.toArray(new Charge[charges.size()]);
+	}
+	
+	/**
+	 * Gets the number of charges present in this field.
+	 * @return the number of charges
+	 */
+	public int getChargeNumber() {
+		return charges.size();
+	}
+	
+	/**
 	 * Gives the electric field vector at the given position.
 	 * @param pos the position to calculate the electric field
 	 * @return the electric field vector

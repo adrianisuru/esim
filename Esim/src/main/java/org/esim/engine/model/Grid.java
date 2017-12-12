@@ -93,7 +93,7 @@ public class Grid implements Model{
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboid);
 		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices, GL15.GL_STATIC_DRAW);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
-		GL30.glBindVertexArray(vaoid);
+		GL30.glBindVertexArray(0);
 		
 	}
 
