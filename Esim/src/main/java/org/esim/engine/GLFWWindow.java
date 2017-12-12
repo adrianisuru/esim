@@ -15,7 +15,7 @@ public class GLFWWindow {
 	 * This window's glfw handle. 
 	 * Usage similar to a pointer but it doesnt actually describe a memory location.
 	 */
-	final long handle;
+	public final long handle;
 	
 	/**
 	 * The opengl capabilities of this window.
@@ -43,11 +43,12 @@ public class GLFWWindow {
 	 * Prepares this window for drawing.
 	 * Call this method before drawing on this window.
 	 */
-	protected void focus() {
+	public void focus() {
 		GLFW.glfwMakeContextCurrent(handle);
 		GL.setCapabilities(capabilities);
 		
 	}
+	
 	
 	/**
 	 * Swaps the buffers of this window.

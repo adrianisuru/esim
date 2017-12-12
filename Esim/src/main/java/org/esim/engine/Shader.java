@@ -21,6 +21,8 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import org.lwjgl.opengl.GL20;
+
 public class Shader {
 
 	private final int id;
@@ -78,6 +80,10 @@ public class Shader {
         if (glGetProgrami(id, GL_VALIDATE_STATUS) == 0) {
             System.err.println("Warning validating Shader code: " + glGetProgramInfoLog(id, 1024));
         }
+    }
+    
+    public void enableLayoutLoc(String name, int loc) {
+    	GL20.glBindAttribLocation(id, loc, name);
     }
 
     public void bind() {
