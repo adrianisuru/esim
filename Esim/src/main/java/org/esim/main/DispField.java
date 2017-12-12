@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL30;
 
 public class DispField extends DisplayWindow{
 	
-
+	
 	private final Field field; 
 	
 	private Model grid;

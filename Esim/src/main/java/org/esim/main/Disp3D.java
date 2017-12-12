@@ -8,6 +8,8 @@ import org.lwjgl.opengl.GL11;
 
 public class Disp3D extends DisplayWindow{
 	
+	public static int DEFAULT_RES = 100;
+	
 	Model graph;
 	float[] vertices;
 	
