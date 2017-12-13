@@ -12,13 +12,13 @@ import org.joml.Vector2f;
 public class Charge {
 
 	/**The x position of this charge.*/
-	float x;
+	public float x;
 	
 	/**The y position of this charge.*/
-	float y;
+	public float y;
 	
 	/**The value of this charge in coulombs.*/
-	float value;
+	public float value;
 	
 	/**
 	 * Creates a new charge given an (x, y) coordinate and a value.

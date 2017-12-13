@@ -12,5 +12,19 @@ public class Utils {
         }
         return result;
     }
+    
+    public static String pointAsString(float...x) {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append("[");
+    	for(float f : x) {
+    		builder.append(f);
+    		builder.append(", ");
+    	}
+    	builder.deleteCharAt(builder.length() - 1);
+    	builder.deleteCharAt(builder.length() - 2);
+    	builder.append("]");
+    	return builder.toString();
+    }
+
 
 }

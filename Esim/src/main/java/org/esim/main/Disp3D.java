@@ -3,7 +3,9 @@ package org.esim.main;
 import org.esim.electrostatics.Field;
 import org.esim.engine.DisplayWindow;
 import org.esim.engine.GLFWWindow;
+import org.esim.engine.model.Graph;
 import org.esim.engine.model.Model;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 public class Disp3D extends DisplayWindow{
@@ -11,7 +13,6 @@ public class Disp3D extends DisplayWindow{
 	public static int DEFAULT_RES = 100;
 	
 	Model graph;
-	float[] vertices;
 	
 	Field field;
 	
@@ -24,18 +25,16 @@ public class Disp3D extends DisplayWindow{
 		this.field = field;
 		this.res = res;
 		
-		vertices = new float[res*res];
+		graph = new Graph(field, res);
 		
-		
-		//initialize graph
-		//graph = new ...
+	
 		
 	}
 
 	@Override
 	public void draw() {
 		//draw graph
-		//graph.draw();
+		  graph.draw();
 		
 		//...
 		//maybe draw some other stuff
@@ -44,14 +43,15 @@ public class Disp3D extends DisplayWindow{
 	@Override
 	public void update() {
 		
-		//update graph
+		if(GLFW.glfwGetWindowAttrib(window.handle, GLFW.GLFW_FOCUSED) == GLFW.GLFW_FALSE) {
+			graph.update();
+		}
 		
 	}
 
 	@Override
 	public void cleanup() {
-		// TODO Auto-generated method stub
-		
+		graph.cleanup();
 	}
 
 }

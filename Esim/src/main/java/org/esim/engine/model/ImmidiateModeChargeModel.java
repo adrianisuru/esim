@@ -15,12 +15,14 @@ import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glPointSize;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 
+import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import org.esim.electrostatics.Charge;
 import org.esim.electrostatics.Field;
 import org.esim.engine.Shader;
 import org.esim.util.Utils;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
@@ -46,6 +48,8 @@ public class ImmidiateModeChargeModel implements Model{
 	private int[] indices;
 	private IntBuffer ibuff;
 	float[] vertices, colors;
+	
+	
 	
 	public ImmidiateModeChargeModel(Field field) {
 		this.field = field;
@@ -106,6 +110,8 @@ public class ImmidiateModeChargeModel implements Model{
 
 	@Override
 	public void update() {
+		
+	
 		
 		Charge[] charges = field.getCharges();
 		

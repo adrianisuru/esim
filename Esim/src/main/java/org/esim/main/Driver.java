@@ -58,7 +58,7 @@ public class Driver {
 		
 		
 		displays = new DisplayWindow[2];
-		displays[0] = new DispField(field, new GLFWWindow(WIDTH, HEIGHT, "2d", 0, 0), 30, 30);
+		displays[0] = new DispField(field, new GLFWWindow(WIDTH, HEIGHT, "2d", 0, 0), 10, 10);
 		displays[1] = new Disp3D(field, new GLFWWindow(WIDTH, HEIGHT, "3d", 0, 0), Disp3D.DEFAULT_RES);
 		
 		sizeCallback = new GLFWWindowSizeCallback() {

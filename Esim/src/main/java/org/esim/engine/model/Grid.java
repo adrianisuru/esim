@@ -2,6 +2,7 @@ package org.esim.engine.model;
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
 
+import org.esim.util.Utils;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
@@ -50,6 +51,7 @@ public class Grid implements Model{
 	public void updateSize(int width, int height) {
 		this.width = width;
 		this.height = height;
+		update();
 	}
 	
 	public void updateColor(Vector4f color) {
@@ -58,6 +60,12 @@ public class Grid implements Model{
 	
 	@Override
 	public void draw() {
+		GL30.glBindVertexArray(vaoid);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboid);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices, GL15.GL_DYNAMIC_DRAW);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+		GL30.glBindVertexArray(0);
+		
 		GL11.glColor4f(color.x, color.y, color.z, color.w);
 		GL30.glBindVertexArray(vaoid);
 		GL20.glEnableVertexAttribArray(0);
@@ -87,6 +95,7 @@ public class Grid implements Model{
 			vertices[k++]= y/h;
 			vertices[k++]= 1;
 			vertices[k++]= y/h;
+			//System.out.println(Utils.pointAsString(y/h));
 		}
 		vertices[k++] = -1;
 		vertices[k++]= 1;
@@ -96,12 +105,7 @@ public class Grid implements Model{
 		vertices[k++]= -1;
 		vertices[k++]= 1;
 		vertices[k++]= 1;
-		
-		GL30.glBindVertexArray(vaoid);
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboid);
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices, GL15.GL_STATIC_DRAW);
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
-		GL30.glBindVertexArray(0);
+
 		
 	}
 

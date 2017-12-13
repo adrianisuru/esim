@@ -127,6 +127,10 @@ public class Field {
 		removeChargeAt(currentChargeIndex);
 	}
 	
+	public void selectCharge(Charge c) {
+		currentChargeIndex = charges.indexOf(c);
+	}
+	
 	/**
 	 * Gets the charge at the index.
 	 * @param index index of the charge
