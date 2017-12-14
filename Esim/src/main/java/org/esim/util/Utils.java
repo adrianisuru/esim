@@ -26,5 +26,13 @@ public class Utils {
     	return builder.toString();
     }
 
+	public static String pointAsString(int[] x) {
+		float[] f = new float[x.length];
+		for(int i = 0; i < x.length; i++) {
+			f[i] = x[i];
+		}
+		return pointAsString(f);
+	}
+
 
 }

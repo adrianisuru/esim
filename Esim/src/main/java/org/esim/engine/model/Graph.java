@@ -12,6 +12,8 @@ import static org.lwjgl.opengl.GL11.glBlendFunc;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glHint;
 
+import java.util.Arrays;
+
 import org.esim.electrostatics.Field;
 import org.esim.engine.Shader;
 import org.esim.util.Utils;
@@ -22,7 +24,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-
+@Deprecated
 public class Graph implements Model{
 
 	private Shader shader;
@@ -61,6 +63,10 @@ public class Graph implements Model{
 		projMatrix, 
 		worldMatrix;
 	
+	private int
+		windowWidth,
+		windowHeight;
+	
 	
 	public Graph(Field field, int res) {
 		this.field = field;
@@ -69,7 +75,7 @@ public class Graph implements Model{
 		vao = GL30.glGenVertexArrays();
 		
 		vertices = new float[res*res*3];
-		indices = new int[(res)*(res)*2];
+		genIndexOrder();
 
 		
 		GL30.glBindVertexArray(vao);
@@ -109,7 +115,7 @@ public class Graph implements Model{
 		update();
 	}
 	
-	private void genProjectionMatrix() {
+	private void genProjectionMatrix(int width, int height) {
 		
 		//MAKE THIS
 		
@@ -120,7 +126,7 @@ public class Graph implements Model{
 		float back = 128.0f;
 		final double deg2rad = Math.PI / 180;
 		
-		float ratio = 1;
+		float ratio = width/(float)height;
 		
 		double tangent = Math.tan(fovY*deg2rad/2);
 		float heightf = (float) (front*tangent);
@@ -162,10 +168,10 @@ public class Graph implements Model{
 		
 		GL30.glBindVertexArray(vao);
 		GL20.glEnableVertexAttribArray(0);
-		GL20.glEnableVertexAttribArray(1);
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vboIndices);
 		GL11.glDrawElements(GL11.GL_LINE_STRIP, indices.length, GL11.GL_UNSIGNED_INT, 0);
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
 		GL20.glDisableVertexAttribArray(0);
-		GL20.glDisableVertexAttribArray(1);
 		GL30.glBindVertexArray(0);
 		//System.out.println("boi");
 		shader.unbind();
@@ -182,11 +188,16 @@ public class Graph implements Model{
 		
 	
 		
-		genProjectionMatrix();
+		genProjectionMatrix(this.windowWidth, this.windowHeight);
 		genWorldMatrix();
 		
 		
 		
+	}
+	
+	public void updateWindowSize(int w, int h) {
+		this.windowWidth = w;
+		this.windowHeight = h;
 	}
 	
 	private void updateField() {
@@ -209,7 +220,7 @@ public class Graph implements Model{
 					
 				vertices[index+0] = (x/w);
 				vertices[index+1] = (y/h);
-				vertices[index+2] = (c/(Field.K*heightscale));
+				vertices[index+2] = 0*(c/(Field.K*heightscale));
 //				color = genColor(c, mincolor, maxcolor, false); // something like this
 //				colors[index+0] = color.x;
 //				colors[index+1] = color.y;
@@ -255,7 +266,7 @@ public class Graph implements Model{
 			j++;
 		}
 		
-
+		//System.out.println(Utils.pointAsString(indices));
 	}
 	
 

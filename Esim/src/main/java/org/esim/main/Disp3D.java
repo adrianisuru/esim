@@ -8,15 +8,16 @@ import org.esim.engine.model.Model;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
+
 public class Disp3D extends DisplayWindow{
 	
 	public static int DEFAULT_RES = 100;
 	
-	Model graph;
+	Graph graph;
 	
 	Field field;
 	
-	int res;
+	public int res;
 	
 
 	public Disp3D(Field field, GLFWWindow window, int res) {
@@ -27,14 +28,20 @@ public class Disp3D extends DisplayWindow{
 		
 		graph = new Graph(field, res);
 		
+		
+		
+	}
 	
+	@Override
+	public void updateSize(int w, int h){
+		super.updateSize(w, h);
 		
 	}
 
 	@Override
 	public void draw() {
 		//draw graph
-		  graph.draw();
+		 
 		
 		//...
 		//maybe draw some other stuff
@@ -44,14 +51,14 @@ public class Disp3D extends DisplayWindow{
 	public void update() {
 		
 		if(GLFW.glfwGetWindowAttrib(window.handle, GLFW.GLFW_FOCUSED) == GLFW.GLFW_FALSE) {
-			graph.update();
+			
 		}
 		
 	}
 
 	@Override
 	public void cleanup() {
-		graph.cleanup();
+
 	}
 
 }

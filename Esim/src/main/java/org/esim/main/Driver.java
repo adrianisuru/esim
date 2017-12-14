@@ -68,9 +68,11 @@ public class Driver {
 				for(DisplayWindow dw : displays) {
 					if(window == dw.window.handle) {
 						dw.window.focus();
+						dw.updateSize(width, height);
 						break;
 					}
 				}
+				
 				GL11.glViewport(0, 0, width, height);
 				
 				//System.out.println(window + ":" + width + "," + height);

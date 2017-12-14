@@ -54,8 +54,6 @@ public class DispField extends DisplayWindow{
 
 	private void mouseInvoke(long window, int button, int action, int mods) {
 		if(window != this.window.handle) return;
-		
-		
 	}
 
 	private void foc() {
@@ -68,7 +66,7 @@ public class DispField extends DisplayWindow{
 		
  	grid.draw();
 	charges.draw();
-	//fieldArrows.draw();
+	fieldArrows.draw();
 		
 		
 	}

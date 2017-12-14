@@ -8,12 +8,18 @@ public abstract class DisplayWindow {
 
 	public final GLFWWindow window;
 	
+	public int windowWidth, windowHeight;
+	
 	GLFWWindowSizeCallback sizeCallback;
 	
 	public DisplayWindow(GLFWWindow window) {
 		this.window = window;
 	}
 	
+	public void updateSize(int w, int h) {
+		windowWidth = w;
+		windowHeight = h;
+	}
 	
 	protected final void predraw() {
 		window.focus();
