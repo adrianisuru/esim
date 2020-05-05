@@ -65,5 +65,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'org.esim.main.Driver'
+    mainClassName = 'esim.main.EsimDriver'
 }
